@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class playercontrol : MonoBehaviour
+public class FollowPlayer : MonoBehaviour
 {
+    public GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,6 +12,7 @@ public class playercontrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = player.transform.position;
         
     }
 }
