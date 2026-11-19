@@ -1,21 +1,29 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class playercontrol : MonoBehaviour
 {
+    //Movement tuning (editable in inspector)
     public float speed = 5.0f;
     public float turnSpeed;
+    public InputAction moveAction;
+    public Vector2 moveInput;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        moveAction.Enable();
     }
 
     // Update is called once per frame
     void Update()
+        
     {
+        moveInput = moveAction.ReadValue<Vector2>();
         // Move the vehicle forward   
        
-        transform.Translate(Vector3.forward * Time.deltaTime * 5);
-        transform.Translate(Vector3.right * Time.deltaTime * turnSpeed);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * moveInput.y );
+        transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * moveInput.x);
+        transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * moveInput.x);
+
     }
-}
+
